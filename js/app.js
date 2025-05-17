@@ -1,13 +1,28 @@
 let totalGeral;
+let carrinhoItens = []; // 
 limpar();
 
 function adicionar(){
     // recuperar valores nome do produto, quantidade e valor
     let produto = document.getElementById('produto').value;
-    let nomeProduto = produto.split(' -')[0];
-    let valorUnitario = produto.split('R$')[1];
     let quantidade = document.getElementById('quantidade').value;
+
     
+    // Verificar se o produto selecionado é válido
+    if (!produto || produto.trim() === "") {
+        alert("Selecione um produto válido.");
+        return;
+    }
+
+    // Verificar se a quantidade inserida é válida
+    if (isNaN(quantidade) || quantidade <= 0) {
+        alert("Insira uma quantidade válida.");
+        return;
+    }
+
+    let nomeProduto = produto.split(' -')[0];
+    let valorUnitario = parseFloat(produto.split('R$')[1]);
+
     // calcular o preço, o nosso subtotal
     let preco = quantidade * valorUnitario;
 
